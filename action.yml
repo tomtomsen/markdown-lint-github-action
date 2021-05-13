@@ -25,7 +25,7 @@ runs:
       run: |
           echo "##[group]Install markdownlint-cli"
 
-          echo "##[command]markdownlint-cli -v"
+          echo "##[command]markdownlint-cli --version"
 
           npx markdownlint-cli --version
 
