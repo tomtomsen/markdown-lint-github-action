@@ -27,7 +27,7 @@ runs:
 
           echo "##[command]markdownlint-cli -v"
 
-          npx markdownlint-cli -v
+          npx markdownlint-cli --version
 
           echo "##[endgroup]"
       
