@@ -25,11 +25,9 @@ runs:
       run: |
           echo "##[group]Install markdownlint-cli"
 
-          npm i markdownlint-cli
-
           echo "##[command]markdownlint-cli -v"
 
-          markdownlint-cli -v
+          npx markdownlint-cli -v
 
           echo "##[endgroup]"
       
@@ -37,7 +35,7 @@ runs:
       shell: bash
       id: run
       run: |
-        markdownlint-cli ${{ inputs.args }} -- ${{ inputs.files }}
+        npx markdownlint-cli ${{ inputs.args }} -- ${{ inputs.files }}
       working-directory: ${{ inputs.path }}
 
 branding:
