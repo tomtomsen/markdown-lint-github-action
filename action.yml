@@ -1,0 +1,46 @@
+---
+name: Markdownlint
+description: Lints markdown files.
+
+inputs:
+    description: >
+      TODO
+    required: false
+
+  path:
+    description: >
+      TODO
+    required: false
+    default:  ${{ github.workspace }}
+
+  args:
+    description: >
+      Additional command-line arguments. TODO
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install markdownlint-cli
+      shell: bash
+      run: |
+          echo "##[group]Install editorconfig-checker"
+
+          npm i -g markdownlint-cli
+
+          echo "##[command]markdownlint-cli -v"
+
+          markdownlint-cli -v
+
+          echo "##[endgroup]"
+      
+    - name: Run markdownlint-cli
+      shell: bash
+      id: run
+      run: |
+        markdownlint-cli ${{ inputs.args }} -- ${{ inputs.files }}
+      working-directory: ${{ inputs.path }}
+
+branding:
+  icon:  check-circle
+  color: red
