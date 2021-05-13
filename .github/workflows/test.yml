@@ -1,0 +1,14 @@
+---
+name: Action test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: tomtomsen/markdown-lint-github-action@master
