@@ -3,13 +3,12 @@ name: Markdownlint
 description: Lints markdown files.
 
 inputs:
-    description: >
-      TODO
+  files:
+    description: TODO
     required: false
 
   path:
-    description: >
-      TODO
+    description: TODO
     required: false
     default:  ${{ github.workspace }}
 
