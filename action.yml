@@ -23,9 +23,9 @@ runs:
     - name: Install markdownlint-cli
       shell: bash
       run: |
-          echo "##[group]Install editorconfig-checker"
+          echo "##[group]Install markdownlint-cli"
 
-          npm i -g markdownlint-cli
+          npm i markdownlint-cli
 
           echo "##[command]markdownlint-cli -v"
 
