@@ -6,6 +6,7 @@ inputs:
   files:
     description: TODO
     required: false
+    default: '**.md'
 
   path:
     description: TODO
