@@ -26,7 +26,11 @@ runs:
       id: run
       run: |
         command_failed=0
+        echo "IN"
+        echo "command_failed: $command_failed"
         npx markdownlint-cli ${{ inputs.args }} -o result.log -- ${{ inputs.files }} || command_failed=1
+        echo "out"
+        echo "command_failed: $command_failed"
         cat result.log | awk -F'\n' '
           {print $0}
 
