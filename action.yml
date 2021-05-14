@@ -25,6 +25,7 @@ runs:
       shell: bash
       id: run
       run: |
+        command_failed=0
         npx markdownlint-cli ${{ inputs.args }} -- ${{ inputs.files }} 2>&1 | awk -F'\n' '
           {print $0}
 
@@ -41,8 +42,9 @@ runs:
               split(arr[1], part, ":")
 
               printf "::warning file=%s,line=%s::%s %s\n", part[1], part[2], arr[2], substr($0, length(arr[1])+1+length(arr[2])+1+1)
-          }' | tee output.log
+          }' | tee output.log || command_failed=1
         echo "::set-output name=full::$(cat output.log)"
+        exit $command_failed
       working-directory: ${{ inputs.path }}
 
 branding:
