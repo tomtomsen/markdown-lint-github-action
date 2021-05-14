@@ -25,6 +25,7 @@ runs:
       shell: bash
       id: run
       run: |
+        awk
         npx markdownlint-cli ${{ inputs.args }} -- ${{ inputs.files }} | awk -F'\n' '
           {print $0}
 
