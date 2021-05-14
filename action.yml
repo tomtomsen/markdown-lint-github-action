@@ -26,7 +26,8 @@ runs:
       id: run
       run: |
         command_failed=0
-        npx markdownlint-cli ${{ inputs.args }} -- ${{ inputs.files }} 2>&1 | awk -F'\n' '
+        npx markdownlint-cli ${{ inputs.args }} -o result.log -- ${{ inputs.files }} || command_failed=1
+        cat result.log | awk -F'\n' '
           {print $0}
 
           /^[a-zA-Z0-9_\\.\/\-]+:[0-9]+:[0-9]+ MD[0-9]+\/[a-z\-]+ (.*)$/ {
