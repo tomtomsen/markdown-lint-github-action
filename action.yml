@@ -21,23 +21,12 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Install markdownlint-cli
-      shell: bash
-      run: |
-          echo "##[group]Install markdownlint-cli"
-
-          echo "##[command]markdownlint-cli --version"
-
-          npx markdownlint-cli --version
-
-          echo "##[endgroup]"
-      
     - name: Run markdownlint-cli
       shell: bash
       id: run
       run: |
         npx markdownlint-cli ${{ inputs.args }} -- ${{ inputs.files }} | awk -F'\n: ' '
-        
+
           {print $0}
 
           /^[a-zA-Z0-9_\\.-]+:[0-9]+:[0-9]+ MD[0-9]{3}\/[a-z\-]+ (.*)$/ {
