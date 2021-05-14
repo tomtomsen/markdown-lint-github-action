@@ -25,12 +25,10 @@ runs:
       shell: bash
       id: run
       run: |
-        echo "::warning file=README.md,line=1::some warning"
         npx markdownlint-cli ${{ inputs.args }} -- ${{ inputs.files }} | awk -F'\n' '
-
           {print $0}
 
-          /^[a-zA-Z0-9_\\.-]+:[0-9]+:[0-9]+ MD[0-9]{3}\/[a-z\-]+ (.*)$/ {
+          /^[a-zA-Z0-9_\\.-]+:[0-9]+:[0-9]+ MD[0-9]+\/[a-z\-]+ (.*)$/ {
               split($0, arr, " ")
               split(arr[1], part, ":")
 
@@ -38,7 +36,7 @@ runs:
           }
           
           
-          /^[a-zA-Z0-9_\\.-]+:[0-9]+ MD[0-9]{3}\/[a-z\-]+ (.*)$/ {
+          /^[a-zA-Z0-9_\\.-]+:[0-9]+ MD[0-9]+\/[a-z\-]+ (.*)$/ {
               split($0, arr, " ")
               split(arr[1], part, ":")
 
