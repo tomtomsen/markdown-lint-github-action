@@ -20,7 +20,7 @@ jobs:
         id: action
         uses: tomtomsen/markdown-lint-github-action@main
         with:
-          files: tests/**.md
+          files: ${{ github.workspace }}/tests/**.md
         continue-on-error: true
 
       - name: 'contains ::warning'
