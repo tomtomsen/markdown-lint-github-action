@@ -1,5 +1,5 @@
 ---
-name: Action test
+name: Action tests
 
 on:
   push:
@@ -16,4 +16,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: tomtomsen/markdown-lint-github-action@main
+      - name: run action
+        id: action
+        uses: tomtomsen/markdown-lint-github-action@main
+        with:
+          files: tests/**.md
+        continue-on-error: true
+
+      - name: 'contains ::warning'
+        run: |
+          echo "${{ steps.action.outputs.full }}"
+          echo "${{ steps.action.outputs.full }}" | grep "::warning"
+
+      
