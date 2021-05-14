@@ -26,7 +26,7 @@ runs:
       id: run
       run: |
         awk
-        npx markdownlint-cli ${{ inputs.args }} -- ${{ inputs.files }} | awk -F'\n' '
+        npx markdownlint-cli ${{ inputs.args }} -- ${{ inputs.files }} 2>&1 | awk -F'\n' '
           {print $0}
 
           /^[a-zA-Z0-9_\\.-]+:[0-9]+:[0-9]+ MD[0-9]+\/[a-z\-]+ (.*)$/ {
