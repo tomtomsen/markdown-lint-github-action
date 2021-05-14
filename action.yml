@@ -25,7 +25,8 @@ runs:
       shell: bash
       id: run
       run: |
-        npx markdownlint-cli ${{ inputs.args }} -- ${{ inputs.files }} | awk -F'\n: ' '
+        echo "::warning file=README.md,line=1::some warning"
+        npx markdownlint-cli ${{ inputs.args }} -- ${{ inputs.files }} | awk -F'\n' '
 
           {print $0}
 
