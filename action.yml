@@ -34,6 +34,7 @@ runs:
         ls -la
         echo "::set-output name=full::$(cat result.log)"
         cat result.log
+        tee --version
         cat result.log | awk -F'\n' '
           {print $0}
 
