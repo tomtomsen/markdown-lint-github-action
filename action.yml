@@ -31,8 +31,6 @@ runs:
       id: run
       run: |
         command_failed=0
-        echo "IN"
-        echo "command_failed: $command_failed"
         npx markdownlint-cli ${{ inputs.args }} -o result.log -- ${{ inputs.files }} || command_failed=1
         cat result.log | awk -F'\n' '
           {print $0}
@@ -52,7 +50,12 @@ runs:
               printf "::warning file=%s,line=%s::%s %s\n", part[1], part[2], arr[2], substr($0, length(arr[1])+1+length(arr[2])+1+1)
           }' > output.log
 
-        echo "::set-output name=full::$(cat output.log)"
+        output="$(cat output.log)"
+        output="${output//'%'/'%25'}"
+        output="${output//$'\n'/'%0A'}"
+        output="${output//$'\r'/'%0D'}"
+
+        echo "::set-output name=full::$output"
 
         exit $command_failed
       working-directory: ${{ inputs.path }}
