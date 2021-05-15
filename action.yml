@@ -18,6 +18,11 @@ inputs:
       Additional command-line arguments. TODO
     required: false
 
+outputs:
+  full: 
+    description: "Number of files copied"
+    value: ${{ steps.run.outputs.full }}
+
 runs:
   using: "composite"
   steps:
