@@ -32,30 +32,7 @@ runs:
         echo "out"
         echo "command_failed: $command_failed"
         ls -la
-        echo "::set-output name=full::$(cat result.log)"
-        cat result.log
-        tee --version
-        cat result.log | awk -F'\n' '
-          {print $0}
-
-          /^[a-zA-Z0-9_\\.\/\-]+:[0-9]+:[0-9]+ MD[0-9]+\/[a-z\-]+ (.*)$/ {
-              split($0, arr, " ")
-              split(arr[1], part, ":")
-
-              printf "::warning file=%s,line=%s,col=%s::%s %s\n", part[1], part[2], part[3], arr[2], substr($0, length(arr[1])+1+length(arr[2])+1+1)
-          }
-          
-          
-          /^[a-zA-Z0-9_\\.\/\-]+:[0-9]+ MD[0-9]+\/[a-z\-]+ (.*)$/ {
-              split($0, arr, " ")
-              split(arr[1], part, ":")
-
-              printf "::warning file=%s,line=%s::%s %s\n", part[1], part[2], arr[2], substr($0, length(arr[1])+1+length(arr[2])+1+1)
-          }'
-        echo "outer"
-
-        echo "::set-output name=full::$(cat output.log)"
-        exit $command_failed
+        echo "::set-output name=full::test"
       working-directory: ${{ inputs.path }}
 
 branding:
