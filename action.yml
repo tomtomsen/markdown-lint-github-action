@@ -33,6 +33,7 @@ runs:
         echo "command_failed: $command_failed"
         ls -la
         echo "::set-output name=full::$(cat output.log)"
+        cat result.log
         cat result.log | awk -F'\n' '
           {print $0}
 
